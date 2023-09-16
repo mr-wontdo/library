@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-// Creates Book object from form values, adds to myLibrary array, and updates cards
+// Create book object from form values, add to myLibrary array, and update cards
 function addBookToLibrary() {
     const newTitle = document.querySelector('[name="title"]').value;
     const newAuthor = document.querySelector('[name="author"]').value;
@@ -39,7 +39,7 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Creates and updates cards
+// Create and update cards
 function updateLibraryCards() {
     const library = document.querySelector('.library');
     library.textContent = '';
@@ -60,14 +60,29 @@ function updateLibraryCards() {
         removeBookButton.classList.add('remove-book');
         removeBookButton.setAttribute('data-index', i)
         removeBookButton.textContent = 'Remove';
-        removeBookButton.addEventListener('click', (e) => {
-            const indexValue = e.srcElement.getAttribute('data-index');
-            myLibrary.splice(indexValue, 1);
-            updateLibraryCards();
-        });
+        removeBookButton.addEventListener('click', removeCard);
         const cardItems = [title, author, readButton, removeBookButton];
         for (item of cardItems) {
             card.appendChild(item);
         } 
     }
+}
+
+// Remove book object from myLibrary array and update cards
+function removeCard(e) {
+    const indexValue = e.srcElement.getAttribute('data-index');
+    myLibrary.splice(indexValue, 1);
+    updateLibraryCards();
+}
+
+// Test code
+createDummyBooks();
+function createDummyBooks() {
+    const book1 = new Book('Title 1', 'Author 1', 123, 'Not read');
+    const book2 = new Book('Title 2', 'Author 2', 123, 'Not read');
+    const book3 = new Book('Title 3', 'Author 3', 123, 'Not read');
+    myLibrary.push(book1);
+    myLibrary.push(book2);
+    myLibrary.push(book3);
+    updateLibraryCards();
 }
