@@ -13,14 +13,11 @@
 }
 
 body {
-    font-family: var(--poppins);
-    height: 100vh;
-}
-
-.container {
     background-color: var(--latteCreme);
+    font-family: var(--poppins);
     display: grid;
-    grid-template-rows: 96px 1fr 48px;
+    grid-template-rows: 96px 1fr 96px;
+    min-height: 100vh;
 }
 
 .header-container {
@@ -62,6 +59,7 @@ body {
 
 .footer {
     display: flex;
+    align-items: flex-end;
     justify-content: center;
 }
 
@@ -69,6 +67,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-bottom: 8px;
 }
 
 .content-container {
@@ -105,6 +104,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 64px;
+    height: max-content;
 }
 
 .card {
