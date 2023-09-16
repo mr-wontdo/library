@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-// Collects form values, creates Book object, and creates card
+// Creates Book object from form values, adds to myLibrary array, and updates cards
 function addBookToLibrary() {
     const newTitle = document.querySelector('[name="title"]').value;
     const newAuthor = document.querySelector('[name="author"]').value;
@@ -43,37 +43,31 @@ function Book(title, author, pages, read) {
 function updateLibraryCards() {
     const library = document.querySelector('.library');
     library.textContent = '';
-    for (book of myLibrary) {
+    for (let i = 0; i < myLibrary.length; i++) {
         const card = document.createElement('div');
         card.classList.add('card');
         library.appendChild(card);
         const title = document.createElement('div');
         title.classList.add('title');
-        title.textContent = book.title;
+        title.textContent = myLibrary[i].title;
         const author = document.createElement('div');
         author.classList.add('author');
-        author.textContent = book.author;
+        author.textContent = myLibrary[i].author;
         const readButton = document.createElement('button');
         readButton.classList.add('read');
-        readButton.textContent = book.read;
+        readButton.textContent = myLibrary[i].read;
         const removeBookButton = document.createElement('button');
         removeBookButton.classList.add('remove-book');
+        removeBookButton.setAttribute('data-index', i)
         removeBookButton.textContent = 'Remove';
+        removeBookButton.addEventListener('click', (e) => {
+            const indexValue = e.srcElement.getAttribute('data-index');
+            myLibrary.splice(indexValue, 1);
+            updateLibraryCards();
+        });
         const cardItems = [title, author, readButton, removeBookButton];
         for (item of cardItems) {
             card.appendChild(item);
         } 
     }
-}
-
-// Test codes
-createDummyBooks();
-updateLibraryCards();
-function createDummyBooks() {
-    const book1 = new Book('Title 1', 'Author 1', 123, 'Not read');
-    const book2 = new Book('Title 2', 'Author 2', 123, 'Not read');
-    const book3 = new Book('Title 3', 'Author 3', 123, 'Not read');
-    myLibrary.push(book1);
-    myLibrary.push(book2);
-    myLibrary.push(book3);
 }
