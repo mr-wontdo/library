@@ -20,6 +20,7 @@ body {
     min-height: 100vh;
 }
 
+/* Header container */
 .header-container {
     background-color: var(--toastedWhite);
     font-weight: bold;
@@ -50,6 +51,7 @@ body {
     width: max-content;
 }
 
+/* Footer container */
 .footer-container {
     display: grid;
     grid-template-columns: min(1200px, 100%);
@@ -70,6 +72,7 @@ body {
     margin-bottom: 8px;
 }
 
+/* Content container */
 .content-container {
     display: grid;
     grid-template-columns: min(1200px, 100%);
@@ -100,6 +103,7 @@ body {
     padding: 12px 24px;
 }
 
+/* Library and cards */
 .library {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -126,4 +130,24 @@ body {
 
 .remove-book {
     background-color: var(--coffeeBrown);
+}
+
+/* Dialog  */
+body {
+    position: relative;
+}
+
+dialog {
+    border-radius: 8px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 24px;
+}
+
+dialog > form {
+    display: grid;
+    gap: 24px;
 }

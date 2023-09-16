@@ -16,10 +16,6 @@ function addBookToLibrary() {
     createCard();
 }
 
-
-
-
-
 // Show modal
 const addBookModal = document.querySelector('dialog');
 const addBookButton = document.querySelector('.add-book');
