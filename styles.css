@@ -132,7 +132,7 @@ body {
     background-color: var(--coffeeBrown);
 }
 
-/* Dialog  */
+/* Modal dialog */
 body {
     position: relative;
 }

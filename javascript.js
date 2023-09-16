@@ -28,6 +28,7 @@ const submitBookButton = document.querySelector('dialog button');
 submitBookButton.addEventListener('click', (e) => {
     e.preventDefault();
     addBookToLibrary();
+    addBookModal.close();
 });
 
 // Book object constructor
@@ -38,30 +39,24 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Creates card using last item of myLibrary array
+// Creates card using last array item of myLibrary
 function createCard() {
     const library = document.querySelector('.library');
-
     const card = document.createElement('div');
     card.classList.add('card');
     library.appendChild(card);
-    
     const title = document.createElement('div');
     title.classList.add('title');
     title.textContent = myLibrary[myLibrary.length - 1].title;
-    
     const author = document.createElement('div');
     author.classList.add('author');
     author.textContent = myLibrary[myLibrary.length - 1].author;
-    
     const read = document.createElement('button');
     read.classList.add('read');
     read.textContent = myLibrary[myLibrary.length - 1].read;
-    
     const removeBook = document.createElement('button');
     removeBook.classList.add('remove-book');
     removeBook.textContent = 'Remove';
-    
     const cardItems = [title, author, read, removeBook];
     for (item of cardItems) {
         card.appendChild(item);
