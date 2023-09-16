@@ -13,7 +13,7 @@ function addBookToLibrary() {
     }
     const newBook = new Book(newTitle, newAuthor, newPages, newRead);
     myLibrary.push(newBook);
-    createCard();
+    updateLibraryCards();
 }
 
 // Show modal
@@ -39,26 +39,41 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Creates card using last array item of myLibrary
-function createCard() {
+// Creates and updates cards
+function updateLibraryCards() {
     const library = document.querySelector('.library');
-    const card = document.createElement('div');
-    card.classList.add('card');
-    library.appendChild(card);
-    const title = document.createElement('div');
-    title.classList.add('title');
-    title.textContent = myLibrary[myLibrary.length - 1].title;
-    const author = document.createElement('div');
-    author.classList.add('author');
-    author.textContent = myLibrary[myLibrary.length - 1].author;
-    const read = document.createElement('button');
-    read.classList.add('read');
-    read.textContent = myLibrary[myLibrary.length - 1].read;
-    const removeBook = document.createElement('button');
-    removeBook.classList.add('remove-book');
-    removeBook.textContent = 'Remove';
-    const cardItems = [title, author, read, removeBook];
-    for (item of cardItems) {
-        card.appendChild(item);
-    } 
+    library.textContent = '';
+    for (book of myLibrary) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        library.appendChild(card);
+        const title = document.createElement('div');
+        title.classList.add('title');
+        title.textContent = book.title;
+        const author = document.createElement('div');
+        author.classList.add('author');
+        author.textContent = book.author;
+        const readButton = document.createElement('button');
+        readButton.classList.add('read');
+        readButton.textContent = book.read;
+        const removeBookButton = document.createElement('button');
+        removeBookButton.classList.add('remove-book');
+        removeBookButton.textContent = 'Remove';
+        const cardItems = [title, author, readButton, removeBookButton];
+        for (item of cardItems) {
+            card.appendChild(item);
+        } 
+    }
+}
+
+// Test codes
+createDummyBooks();
+updateLibraryCards();
+function createDummyBooks() {
+    const book1 = new Book('Title 1', 'Author 1', 123, 'Not read');
+    const book2 = new Book('Title 2', 'Author 2', 123, 'Not read');
+    const book3 = new Book('Title 3', 'Author 3', 123, 'Not read');
+    myLibrary.push(book1);
+    myLibrary.push(book2);
+    myLibrary.push(book3);
 }
