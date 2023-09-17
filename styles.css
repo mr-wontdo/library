@@ -119,16 +119,20 @@ body {
     padding: 12px;
 }
 
-.read,
-.remove-book {
+.read-button,
+.remove-book-button {
     border-radius: 8px;
 }
 
-.read {
-    background-color: lightgreen;
+.read-button.is-read {
+    background-color: rgb(150, 255, 150);
 }
 
-.remove-book {
+.read-button.not-read {
+    background-color: rgb(255, 150, 150);
+}
+
+.remove-book-button {
     background-color: var(--coffeeBrown);
 }
 

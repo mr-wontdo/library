@@ -47,20 +47,30 @@ function updateLibraryCards() {
         const card = document.createElement('div');
         card.classList.add('card');
         library.appendChild(card);
+
         const title = document.createElement('div');
         title.classList.add('title');
         title.textContent = myLibrary[i].title;
+
         const author = document.createElement('div');
         author.classList.add('author');
         author.textContent = myLibrary[i].author;
+
         const readButton = document.createElement('button');
-        readButton.classList.add('read');
         readButton.textContent = myLibrary[i].read;
+        readButton.addEventListener('click', toggleReadClass);
+        if (myLibrary[i].read === 'Read') {
+            readButton.classList.add('read-button', 'is-read');
+        } else if (myLibrary[i].read === 'Not read') {
+            readButton.classList.add('read-button', 'not-read');
+        }
+
         const removeBookButton = document.createElement('button');
-        removeBookButton.classList.add('remove-book');
+        removeBookButton.classList.add('remove-book-button');
         removeBookButton.setAttribute('data-index', i)
         removeBookButton.textContent = 'Remove';
         removeBookButton.addEventListener('click', removeCard);
+
         const cardItems = [title, author, readButton, removeBookButton];
         for (item of cardItems) {
             card.appendChild(item);
@@ -75,14 +85,8 @@ function removeCard(e) {
     updateLibraryCards();
 }
 
-// Test code
-createDummyBooks();
-function createDummyBooks() {
-    const book1 = new Book('Title 1', 'Author 1', 123, 'Not read');
-    const book2 = new Book('Title 2', 'Author 2', 123, 'Not read');
-    const book3 = new Book('Title 3', 'Author 3', 123, 'Not read');
-    myLibrary.push(book1);
-    myLibrary.push(book2);
-    myLibrary.push(book3);
-    updateLibraryCards();
+// Toggle read status
+function toggleReadClass(e) {
+    e.srcElement.classList.toggle('is-read');
+    e.srcElement.classList.toggle('not-read');
 }
