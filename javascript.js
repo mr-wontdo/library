@@ -51,6 +51,10 @@ function updateLibraryCards() {
         author.classList.add('author');
         author.textContent = myLibrary[i].author;
 
+        const pages = document.createElement('div');
+        pages.classList.add('pages');
+        pages.textContent = myLibrary[i].pages + ' pages';
+
         const readButton = document.createElement('button');
         if (myLibrary[i].isRead === true) {
             readButton.classList.add('read-button', 'is-read');
@@ -68,7 +72,7 @@ function updateLibraryCards() {
         removeBookButton.textContent = 'Remove';
         removeBookButton.addEventListener('click', removeCard);
 
-        const cardItems = [title, author, readButton, removeBookButton];
+        const cardItems = [title, author, pages, readButton, removeBookButton];
         for (item of cardItems) {
             card.appendChild(item);
         } 
