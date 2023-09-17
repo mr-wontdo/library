@@ -23,6 +23,7 @@ body {
 /* Header container */
 .header-container {
     background-color: var(--toastedWhite);
+    box-shadow: 0 1px 4px gray;
     font-weight: bold;
     display: grid;
     grid-template-columns: min(1200px, 100%);
@@ -66,6 +67,7 @@ body {
 }
 
 .copyright {
+    font-size: 1.25rem;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -92,15 +94,21 @@ body {
 }
 
 .add-book {
-    background-color: var(--toastedWhite);
+    background-color: var(--latteCreme);
+    border: none;
     border-radius: 8px;
     font-family: var(--poppins);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
+    outline: none;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 12px 24px;
+    padding: 12px 16px;
+}
+
+.add-book:hover {
+    background-color: var(--toastedWhite)
 }
 
 /* Library and cards */
@@ -112,35 +120,59 @@ body {
 }
 
 .card {
+    font-size: 1.5rem;
     background-color: var(--toastedWhite);
     border-radius: 8px;
+    box-shadow: 1px 1px 4px gray;
     display: grid;
-    gap: 12px;
-    padding: 12px;
+    gap: 16px;
+    padding: 16px;
+}
+
+.title,
+.author,
+.pages {
+    justify-self: center;
 }
 
 .read-button,
 .remove-book-button {
     border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 12px 0;
 }
 
 .read-button.is-read {
     background-color: rgb(150, 255, 150);
 }
 
+.read-button.is-read:hover {
+    background-color: rgb(135, 230, 135);
+}
+
 .read-button.not-read {
     background-color: rgb(255, 150, 150);
+}
+
+.read-button.not-read:hover {
+    background-color: rgb(235, 139, 139);
 }
 
 .remove-book-button {
     background-color: var(--coffeeBrown);
 }
 
-/* Modal dialog */
-body {
-    position: relative;
+.remove-book-button:hover {
+    background-color: #867264;
 }
 
+button {
+    border: none;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+/* Modal dialog */
 dialog {
     border-radius: 8px;
     left: 0;
