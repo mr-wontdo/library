@@ -19,8 +19,8 @@ addBookButton.addEventListener('click', () => {
 });
 
 // Submit modal
-const submitBookButton = document.querySelector('dialog button');
-submitBookButton.addEventListener('click', (e) => {
+const modalForm = document.querySelector('form');
+modalForm.addEventListener('submit', (e) => {
     e.preventDefault();
     addBookToLibrary();
     addBookModal.close();
