@@ -2,17 +2,12 @@ const myLibrary = [];
 
 // Create book object from form values, add to myLibrary array, and update cards
 function addBookToLibrary() {
-    const newTitle = document.querySelector('[name="title"]').value;
-    const newAuthor = document.querySelector('[name="author"]').value;
-    const newPages = document.querySelector('[name="pages"]').value;
-    let newRead = null;
-    if (document.querySelector('[name="read"]').checked === false) {
-        newRead = 'Not read';
-    } else if (document.querySelector('[name="read"]').checked === true) {
-        newRead = 'Read';
-    }
-    const newBook = new Book(newTitle, newAuthor, newPages, newRead);
-    myLibrary.push(newBook);
+    const title = document.querySelector('[name="title"]').value;
+    const author = document.querySelector('[name="author"]').value;
+    const pages = document.querySelector('[name="pages"]').value;
+    const isRead = document.querySelector('[name="read"]').checked;
+    const book = new Book(title, author, pages, isRead);
+    myLibrary.push(book);
     updateLibraryCards();
 }
 
@@ -32,11 +27,11 @@ submitBookButton.addEventListener('click', (e) => {
 });
 
 // Book object constructor
-function Book(title, author, pages, read) {
+function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.isRead = isRead;
 }
 
 // Create and update cards
@@ -57,13 +52,15 @@ function updateLibraryCards() {
         author.textContent = myLibrary[i].author;
 
         const readButton = document.createElement('button');
-        readButton.textContent = myLibrary[i].read;
-        readButton.addEventListener('click', toggleReadClass);
-        if (myLibrary[i].read === 'Read') {
+        if (myLibrary[i].isRead === true) {
             readButton.classList.add('read-button', 'is-read');
-        } else if (myLibrary[i].read === 'Not read') {
+            readButton.textContent = 'Read';
+        } else if (myLibrary[i].isRead === false) {
             readButton.classList.add('read-button', 'not-read');
+            readButton.textContent = 'Not read';
         }
+        readButton.setAttribute('data-index', i)
+        readButton.addEventListener('click', toggleReadStatus);
 
         const removeBookButton = document.createElement('button');
         removeBookButton.classList.add('remove-book-button');
@@ -86,7 +83,15 @@ function removeCard(e) {
 }
 
 // Toggle read status
-function toggleReadClass(e) {
+function toggleReadStatus(e) {
     e.srcElement.classList.toggle('is-read');
     e.srcElement.classList.toggle('not-read');
+    const indexValue = e.srcElement.getAttribute('data-index');
+    if (e.srcElement.textContent === 'Read') {
+        e.srcElement.textContent = 'Not read';
+        myLibrary[indexValue].isRead = false;
+    } else if (e.srcElement.textContent === 'Not read') {
+        e.srcElement.textContent = 'Read';
+        myLibrary[indexValue].isRead = true;
+    }
 }
