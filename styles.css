@@ -95,12 +95,12 @@ body {
 
 .add-book {
     background-color: var(--latteCreme);
-    border: none;
+    border: 1px solid var(--latteCreme);
     border-radius: 8px;
     font-family: var(--poppins);
     font-size: 1.5rem;
     font-weight: bold;
-    outline: none;
+    outline: none !important;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -108,7 +108,8 @@ body {
 }
 
 .add-book:hover {
-    background-color: var(--toastedWhite)
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0);
 }
 
 /* Library and cards */
@@ -135,6 +136,15 @@ body {
     justify-self: center;
 }
 
+button {
+    transition: background-color 0.2s;
+}
+
+button:focus,
+input:focus {    
+    outline: 1px solid black;
+}
+
 .read-button,
 .remove-book-button {
     border-radius: 8px;
@@ -142,48 +152,88 @@ body {
     padding: 12px 0;
 }
 
-.read-button.is-read {
+.read-button.is-read,
+.modal-button {
     background-color: rgb(150, 255, 150);
+    border: 1px solid rgb(150, 255, 150);
 }
 
-.read-button.is-read:hover {
+.read-button.is-read:hover,
+.modal-button:hover {
     background-color: rgb(135, 230, 135);
+    border: 1px solid rgb(135, 230, 135);
 }
 
 .read-button.not-read {
     background-color: rgb(255, 150, 150);
+    border: 1px solid rgb(255, 150, 150);
 }
 
 .read-button.not-read:hover {
     background-color: rgb(235, 139, 139);
+    border: 1px solid rgb(235, 139, 139);
 }
 
 .remove-book-button {
     background-color: var(--coffeeBrown);
+    border: 1px solid var(--coffeeBrown);
 }
 
 .remove-book-button:hover {
     background-color: #867264;
-}
-
-button {
-    border: none;
-    outline: none;
-    transition: background-color 0.2s;
+    border: 1px solid #867264;
 }
 
 /* Modal dialog */
 dialog {
+    background-color: var(--toastedWhite);
+    border: 1px solid var(--toastedWhite);
     border-radius: 8px;
+    box-shadow: 1px 1px 4px black;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     margin: auto;
+    width: 300px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-form {
+    display: grid;
+    gap: 24px;
     padding: 24px;
 }
 
-dialog > form {
+.modal-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+    justify-self: center;
+}
+
+.modal-form input {
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-family: var(--poppins);
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    width: 100%;
+}
+
+.modal-checkbox {
+    font-size: 1.1rem;
     display: grid;
-    gap: 24px;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    gap: 12px;
+}
+
+.modal-button {
+    border-radius: 8px;
+    font-size: 1.25rem;
+    padding: 12px 0;
 }
