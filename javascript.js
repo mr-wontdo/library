@@ -24,6 +24,7 @@ modalForm.addEventListener('submit', (e) => {
     e.preventDefault();
     addBookToLibrary();
     addBookModal.close();
+    modalForm.reset();
 });
 
 // Book object constructor
