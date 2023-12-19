@@ -22,9 +22,13 @@ addBookButton.addEventListener('click', () => {
 const modalForm = document.querySelector('form');
 modalForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary();
-    addBookModal.close();
-    modalForm.reset();
+    if (error.checkFormValidity()) {
+        error.showErrors();
+    } else {
+        addBookToLibrary();
+        addBookModal.close();
+        modalForm.reset(); 
+    };
 });
 
 // Book class
@@ -102,3 +106,60 @@ function toggleReadStatus(e) {
         myLibrary[indexValue].isRead = true;
     }
 }
+
+// Error handler
+function errorHandler() {
+    const title = document.querySelector('input[name="title"]');
+    const author = document.querySelector('input[name="author"]');
+    const pages = document.querySelector('input[name="pages"]');
+
+    function checkFormValidity() {
+        if (!title.validity.valid) return true;
+        else if (!author.validity.valid) return true;
+        else if (!pages.validity.valid) return true;
+        else return false;
+    }
+
+    function showErrors() {
+        showTitleError();
+        showAuthorError();
+        showPagesError();
+    }
+
+    function showTitleError() {
+        const titleError = document.querySelector('span.error.title');
+        if (title.validity.valueMissing) {
+            title.classList.add('invalid');
+            titleError.textContent = 'Please enter a title!';
+        } else {
+            title.classList.remove('invalid');
+            titleError.textContent = '';
+        }
+    }
+
+    function showAuthorError() {
+        const authorError = document.querySelector('span.error.author');
+        if (author.validity.valueMissing) {
+            author.classList.add('invalid');
+            authorError.textContent = 'Please enter an author!';
+        } else {
+            author.classList.remove('invalid');
+            authorError.textContent = '';
+        }
+    }
+
+    function showPagesError() {
+        const pagesError = document.querySelector('span.error.pages');
+        if (pages.validity.valueMissing) {
+            pages.classList.add('invalid');
+            pagesError.textContent = 'Please enter the number of pages!';
+        } else {
+            pages.classList.remove('invalid');
+            pagesError.textContent = '';
+        }
+    }
+
+    return { checkFormValidity, showErrors };
+}
+
+const error = errorHandler();
