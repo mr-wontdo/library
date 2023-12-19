@@ -50,11 +50,20 @@
             </div>
         </div>
         <dialog>
-            <form class="modal-form">
+            <form class="modal-form" novalidate>
                 <div class="modal-header">Let's add a new book!</div>
-                <input type="text" name="title" placeholder="Title" required>
-                <input type="text" name="author" placeholder="Author" required>
-                <input type="number" name="pages" placeholder="Pages" required min="0">
+                <div class="form-row">
+                    <input type="text" name="title" placeholder="Title" required>
+                    <span class="error title"></span>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="author" placeholder="Author" required>
+                    <span class="error author"></span>
+                </div>
+                <div class="form-row">
+                    <input type="number" name="pages" placeholder="Pages" required min="0">
+                    <span class="error pages"></span>
+                </div>
                 <div class="modal-checkbox">
                     <label for="read">Have you read it?</label>
                     <input type="checkbox" id="read" name="read">
