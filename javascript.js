@@ -153,6 +153,9 @@ function errorHandler() {
         if (pages.validity.valueMissing) {
             pages.classList.add('invalid');
             pagesError.textContent = 'Please enter the number of pages!';
+        } else if (pages.validity.rangeUnderflow) {
+            pages.classList.add('invalid');
+            pagesError.textContent = 'You can\'t have a negative number of pages!';
         } else {
             pages.classList.remove('invalid');
             pagesError.textContent = '';
