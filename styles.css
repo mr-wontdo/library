@@ -8,6 +8,7 @@
     --toastedWhite: #f4f1ea;
     --latteCreme: #edd6c0;
     --coffeeBrown: #998373;
+    --validation-red: #c80000;
     --poppins: 'Poppins', sans-serif;
 }
 
@@ -213,6 +214,12 @@ dialog::backdrop {
     justify-self: center;
 }
 
+.modal-form .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .modal-form input {
     background-color: white;
     border: 1px solid white;
@@ -221,6 +228,14 @@ dialog::backdrop {
     font-size: 1.1rem;
     padding: 8px 16px;
     width: 100%;
+}
+
+.modal-form input.invalid:invalid {
+    border: 1px solid var(--validation-red);
+}
+
+.modal-form .error {
+    color: var(--validation-red);
 }
 
 .modal-checkbox {
